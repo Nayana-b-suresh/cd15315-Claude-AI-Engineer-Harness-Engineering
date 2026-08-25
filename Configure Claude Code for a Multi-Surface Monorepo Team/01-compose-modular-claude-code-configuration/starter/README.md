@@ -1,21 +1,17 @@
-# Starter — Exercise 1
+# Solution — Exercise 1
 
-## Files you will edit
+This directory contains the project state after Exercise 1.
 
-Each location is marked with a `# TODO:` (or `<!-- TODO:` for markdown) comment so it's grep-friendly:
+Compared to the starter, the following are now complete:
 
-- `CLAUDE.md` — three TODO blocks: scope-distinction table, `@-import` block, `/memory` troubleshooting one-liner.
-- `.claude/rules/api.md` — two TODO blocks: YAML frontmatter (`description` + `paths`) and at least one concrete API convention in the body.
-- `.claude/rules/tests.md` — two TODO blocks: YAML frontmatter (with a glob that cross-cuts the React and API directories) and at least one concrete testing convention.
+- `CLAUDE.md` — scope-distinction table, `@-import` block pulling in all four standards, and the `/memory` troubleshooting line.
+- `.claude/rules/api.md` — frontmatter (`paths: ["src/api/**/*"]`) plus a body of API conventions (handler signature shape, error throwing, DB access boundaries, validation, logging).
+- `.claude/rules/tests.md` — frontmatter (`paths: ["**/*.test.tsx", "**/*.test.ts"]`) plus a body of testing conventions. Note the cross-cutting glob — it matches test files under `src/components/` AND under `src/api/`, so the same test file picks up both the React rule and the test rule.
 
-`.claude/rules/react.md` and `.claude/standards/*.md` are already complete and serve as worked examples.
-
-## Run / verify
+## Verify
 
 ```bash
-python3 -m venv .venv && source .venv/bin/activate
-pip install -e ".[dev]"
 pytest -q tests/test_us01_claude_md_hierarchy.py tests/test_us02_path_scoped_rules.py
 ```
 
-You should see failures while the TODOs are unfilled. Replace each TODO until pytest reports `13 passed`.
+Expected: **13 passed**.
