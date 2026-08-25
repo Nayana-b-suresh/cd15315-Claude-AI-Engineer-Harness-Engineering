@@ -1,0 +1,56 @@
+[1m============================= test session starts ==============================[0m
+platform linux -- Python 3.13.5, pytest-9.0.2, pluggy-1.6.0 -- /opt/pyvenv/bin/python
+cachedir: .pytest_cache
+metadata: {'Python': '3.13.5', 'Platform': 'Linux-6.18.35-x86_64-with-glibc2.41', 'Packages': {'pytest': '9.0.2', 'pluggy': '1.6.0'}, 'Plugins': {'anyio': '4.13.0', 'asyncio': '1.3.0', 'metadata': '3.1.1', 'cov': '7.0.0', 'Faker': '40.1.2', 'ddtrace': '4.4.0', 'json-report': '1.5.0'}, 'PLATFORM': 'linux/amd64', 'CI': 'true'}
+rootdir: /tmp/resubmit_work/s3
+configfile: pyproject.toml
+plugins: anyio-4.13.0, asyncio-1.3.0, metadata-3.1.1, cov-7.0.0, Faker-40.1.2, ddtrace-4.4.0, json-report-1.5.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+[1mcollecting ... [0mcollected 35 items
+
+tests/test_us01_claude_md_hierarchy.py::test_ac_01_01_root_claude_md_has_at_least_one_import [32mPASSED[0m[32m [  2%][0m
+tests/test_us01_claude_md_hierarchy.py::test_ac_01_02_two_standards_files_each_imported [32mPASSED[0m[32m [  5%][0m
+tests/test_us01_claude_md_hierarchy.py::test_ac_01_03_no_dangling_imports [32mPASSED[0m[32m [  8%][0m
+tests/test_us01_claude_md_hierarchy.py::test_ac_01_04_claude_md_under_200_lines [32mPASSED[0m[32m [ 11%][0m
+tests/test_us01_claude_md_hierarchy.py::test_ac_01_05_documents_scope_and_user_level_not_versioned [32mPASSED[0m[32m [ 14%][0m
+tests/test_us01_claude_md_hierarchy.py::test_ac_01_06_references_memory_command [32mPASSED[0m[32m [ 17%][0m
+tests/test_us02_path_scoped_rules.py::test_ac_02_01_react_rule_has_component_and_page_globs [32mPASSED[0m[32m [ 20%][0m
+tests/test_us02_path_scoped_rules.py::test_ac_02_02_api_rule_has_api_glob [32mPASSED[0m[32m [ 22%][0m
+tests/test_us02_path_scoped_rules.py::test_ac_02_03_tests_rule_has_test_globs [32mPASSED[0m[32m [ 25%][0m
+tests/test_us02_path_scoped_rules.py::test_ac_02_04_react_file_matches_only_react_rule [32mPASSED[0m[32m [ 28%][0m
+tests/test_us02_path_scoped_rules.py::test_ac_02_05_api_file_matches_only_api_rule [32mPASSED[0m[32m [ 31%][0m
+tests/test_us02_path_scoped_rules.py::test_ac_02_06_test_file_matches_react_and_tests [32mPASSED[0m[32m [ 34%][0m
+tests/test_us02_path_scoped_rules.py::test_ac_02_07_each_rule_has_concrete_body [32mPASSED[0m[32m [ 37%][0m
+tests/test_us03_review_command.py::test_ac_03_01_exists_with_valid_frontmatter [32mPASSED[0m[32m [ 40%][0m
+tests/test_us03_review_command.py::test_ac_03_02_description_and_argument_hint [32mPASSED[0m[32m [ 42%][0m
+tests/test_us03_review_command.py::test_ac_03_03_allowed_tools_is_read_oriented [32mPASSED[0m[32m [ 45%][0m
+tests/test_us03_review_command.py::test_ac_03_04_must_report_vs_skip_criteria [32mPASSED[0m[32m [ 48%][0m
+tests/test_us03_review_command.py::test_ac_03_05_two_concrete_io_examples [32mPASSED[0m[32m [ 51%][0m
+tests/test_us03_review_command.py::test_ac_03_06_is_project_scoped [32mPASSED[0m[32m [ 54%][0m
+tests/test_us03_review_command.py::test_ac_03_07_interview_pattern_subsection [32mPASSED[0m[32m [ 57%][0m
+tests/test_us03_review_command.py::test_ac_03_08_interacting_vs_independent_guidance [32mPASSED[0m[32m [ 60%][0m
+tests/test_us04_deploy_check_skill.py::test_ac_04_01_exists_with_valid_frontmatter [32mPASSED[0m[32m [ 62%][0m
+tests/test_us04_deploy_check_skill.py::test_ac_04_02_name_description_context_fork [32mPASSED[0m[32m [ 65%][0m
+tests/test_us04_deploy_check_skill.py::test_ac_04_03_allowed_tools_read_only [32mPASSED[0m[32m [ 68%][0m
+tests/test_us04_deploy_check_skill.py::test_ac_04_04_three_pre_deployment_checks [32mPASSED[0m[32m [ 71%][0m
+tests/test_us04_deploy_check_skill.py::test_ac_04_05_rationale_cites_main_session_and_branching_reality [32mPASSED[0m[32m [ 74%][0m
+tests/test_us04_deploy_check_skill.py::test_ac_04_06_personal_customization_note [32mPASSED[0m[32m [ 77%][0m
+tests/test_us04_deploy_check_skill.py::test_ac_04_07_skill_vs_claude_md_rubric [32mPASSED[0m[32m [ 80%][0m
+tests/test_us05_plan_mode_doc.py::test_ac_05_01_doc_exists [32mPASSED[0m[32m        [ 82%][0m
+tests/test_us05_plan_mode_doc.py::test_ac_05_02_plan_mode_example_three_files_and_rework_phrasing [32mPASSED[0m[32m [ 85%][0m
+tests/test_us05_plan_mode_doc.py::test_ac_05_03_direct_execution_example [32mPASSED[0m[32m [ 88%][0m
+tests/test_us05_plan_mode_doc.py::test_ac_05_04_explore_example_with_scratchpad [32mPASSED[0m[32m [ 91%][0m
+tests/test_us05_plan_mode_doc.py::test_ac_05_05_knight_webb_curriculum_citation [32mPASSED[0m[32m [ 94%][0m
+tests/test_us05_plan_mode_doc.py::test_ac_05_06_all_cited_file_paths_exist [32mPASSED[0m[32m [ 97%][0m
+tests/test_us05_plan_mode_doc.py::test_ac_05_07_combined_workflow_example [32mPASSED[0m[32m [100%][0m
+
+[32m============================== [32m[1m35 passed[0m[32m in 0.10s[0m[32m ==============================[0m
+
+STDERR:
+Spreadsheet runtime warmup failed during python startup
+Traceback (most recent call last):
+  File "/tmp/tmp.L2TH2Y5coc/artifact_tool_v2-2.8.22/artifact_tool/patches/warm_spreadsheet_runtime_on_startup.py", line 26, in warm_spreadsheet_runtime_on_startup
+  File "/tmp/tmp.L2TH2Y5coc/artifact_tool_v2-2.8.22/artifact_tool/spreadsheet_warmup.py", line 772, in warm_spreadsheet_runtime
+  File "/tmp/tmp.L2TH2Y5coc/artifact_tool_v2-2.8.22/artifact_tool/rpc/connection.py", line 37, in get_or_create_client
+  File "/tmp/tmp.L2TH2Y5coc/artifact_tool_v2-2.8.22/artifact_tool/rpc/daemon.py", line 124, in start_daemon
+TimeoutError: Timed out waiting for artifact tool daemon socket. Set ARTIFACT_TOOL_RPC_DAEMON_STARTUP_TIMEOUT_S=<seconds> to increase the limit.

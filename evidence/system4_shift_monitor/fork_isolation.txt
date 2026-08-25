@@ -1,0 +1,8 @@
+Fork isolation verification
+Base hot_state SHA-256: 91e4ee98bacb39eecbc90a48a3db3e1e69bb34148db6468adfc8179e0e1656f0
+H1 scratchpad: forks/H1/scratchpad.jsonl
+H2 scratchpad: forks/H2/scratchpad.jsonl
+H1 contains H2 conclusion: False
+H2 contains H1 conclusion: False
+Base hot_state unchanged after fork creation: True
+Result: PASS — H1 and H2 have distinct scratchpads and do not cross-contaminate.

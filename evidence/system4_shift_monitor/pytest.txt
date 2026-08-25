@@ -1,0 +1,57 @@
+[1m============================= test session starts ==============================[0m
+platform linux -- Python 3.13.5, pytest-9.0.2, pluggy-1.6.0 -- /opt/pyvenv/bin/python
+cachedir: .pytest_cache
+metadata: {'Python': '3.13.5', 'Platform': 'Linux-6.18.35-x86_64-with-glibc2.41', 'Packages': {'pytest': '9.0.2', 'pluggy': '1.6.0'}, 'Plugins': {'anyio': '4.13.0', 'asyncio': '1.3.0', 'metadata': '3.1.1', 'cov': '7.0.0', 'Faker': '40.1.2', 'ddtrace': '4.4.0', 'json-report': '1.5.0'}, 'PLATFORM': 'linux/amd64', 'CI': 'true'}
+rootdir: /tmp/resubmit_work/s4
+configfile: pyproject.toml
+plugins: anyio-4.13.0, asyncio-1.3.0, metadata-3.1.1, cov-7.0.0, Faker-40.1.2, ddtrace-4.4.0, json-report-1.5.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+[1mcollecting ... [0mcollected 33 items
+
+tests/test_us01_tiered_state.py::test_hotstate_roundtrip_and_size_budget [32mPASSED[0m[32m [  3%][0m
+tests/test_us01_tiered_state.py::test_hotstate_rejects_more_than_20_hashes [32mPASSED[0m[32m [  6%][0m
+tests/test_us01_tiered_state.py::test_hotstate_atomic_write [32mPASSED[0m[32m       [  9%][0m
+tests/test_us01_tiered_state.py::test_warmstore_creates_table_and_index [32mPASSED[0m[32m [ 12%][0m
+tests/test_us01_tiered_state.py::test_warmstore_insert_many_roundtrips [32mPASSED[0m[32m [ 15%][0m
+tests/test_us01_tiered_state.py::test_coldstore_writes_monthly_summary [32mPASSED[0m[32m [ 18%][0m
+tests/test_us01_tiered_state.py::test_coldstore_handles_empty_month [32mPASSED[0m[32m [ 21%][0m
+tests/test_us01_tiered_state.py::test_defects_since_uses_index_and_does_not_load_full_table [32mPASSED[0m[32m [ 24%][0m
+tests/test_us01_tiered_state.py::test_defects_since_respects_limit [32mPASSED[0m[32m [ 27%][0m
+tests/test_us02_invocation_pipeline.py::test_gather_new_defects_is_pure_passthrough_to_sql [32mPASSED[0m[32m [ 30%][0m
+tests/test_us02_invocation_pipeline.py::test_gather_new_defects_has_no_python_side_filtering [32mPASSED[0m[32m [ 33%][0m
+tests/test_us02_invocation_pipeline.py::test_invocation_shapes_are_distinct [32mPASSED[0m[32m [ 36%][0m
+tests/test_us02_invocation_pipeline.py::test_build_rich_prompt_stays_under_4000_chars [32mPASSED[0m[32m [ 39%][0m
+tests/test_us02_invocation_pipeline.py::test_run_shift_invokes_client_exactly_once_and_writes_state [32mPASSED[0m[32m [ 42%][0m
+tests/test_us02_invocation_pipeline.py::test_run_shift_cli_entry_point_works [32mPASSED[0m[32m [ 45%][0m
+tests/test_us03_crash_recovery.py::test_append_step_writes_and_fsyncs [32mPASSED[0m[32m [ 48%][0m
+tests/test_us03_crash_recovery.py::test_mid_write_read_reveals_prior_complete_lines [32mPASSED[0m[32m [ 51%][0m
+tests/test_us03_crash_recovery.py::test_load_returns_incomplete_state [32mPASSED[0m[32m [ 54%][0m
+tests/test_us03_crash_recovery.py::test_load_returns_complete_state [32mPASSED[0m[32m [ 57%][0m
+tests/test_us03_crash_recovery.py::test_load_on_missing_file_returns_empty [32mPASSED[0m[32m [ 60%][0m
+tests/test_us03_crash_recovery.py::test_recovery_decide_truth_table[1-False-resume] [32mPASSED[0m[32m [ 63%][0m
+tests/test_us03_crash_recovery.py::test_recovery_decide_truth_table[29-False-resume] [32mPASSED[0m[32m [ 66%][0m
+tests/test_us03_crash_recovery.py::test_recovery_decide_truth_table[30-False-resume] [32mPASSED[0m[32m [ 69%][0m
+tests/test_us03_crash_recovery.py::test_recovery_decide_truth_table[31-False-fresh] [32mPASSED[0m[32m [ 72%][0m
+tests/test_us03_crash_recovery.py::test_recovery_decide_truth_table[1-True-fresh] [32mPASSED[0m[32m [ 75%][0m
+tests/test_us03_crash_recovery.py::test_recovery_decide_truth_table[60-True-fresh] [32mPASSED[0m[32m [ 78%][0m
+tests/test_us03_crash_recovery.py::test_recovery_decide_empty_manifest_is_fresh [32mPASSED[0m[32m [ 81%][0m
+tests/test_us03_crash_recovery.py::test_threshold_constant_is_30_minutes [32mPASSED[0m[32m [ 84%][0m
+tests/test_us03_crash_recovery.py::test_resumed_prompt_has_both_sections [32mPASSED[0m[32m [ 87%][0m
+tests/test_us04_fork_scratchpad.py::test_scratchpad_append_and_read_order [32mPASSED[0m[32m [ 90%][0m
+tests/test_us04_fork_scratchpad.py::test_fork_for_hypothesis_copies_state_without_mutating_base [32mPASSED[0m[32m [ 93%][0m
+tests/test_us04_fork_scratchpad.py::test_two_forks_produce_independent_scratchpads [32mPASSED[0m[32m [ 96%][0m
+tests/test_us04_fork_scratchpad.py::test_merge_findings_appends_without_rewriting_existing [32mPASSED[0m[32m [100%][0m
+
+[32m============================== [32m[1m33 passed[0m[32m in 0.30s[0m[32m ==============================[0m
+
+STDERR:
+Spreadsheet runtime warmup failed during python startup
+Traceback (most recent call last):
+  File "/tmp/tmp.L2TH2Y5coc/artifact_tool_v2-2.8.22/artifact_tool/patches/warm_spreadsheet_runtime_on_startup.py", line 26, in warm_spreadsheet_runtime_on_startup
+  File "/tmp/tmp.L2TH2Y5coc/artifact_tool_v2-2.8.22/artifact_tool/spreadsheet_warmup.py", line 785, in warm_spreadsheet_runtime
+  File "/tmp/tmp.L2TH2Y5coc/artifact_tool_v2-2.8.22/artifact_tool/spreadsheet_warmup.py", line 720, in _warm_feature_flows
+  File "/tmp/tmp.L2TH2Y5coc/artifact_tool_v2-2.8.22/artifact_tool/spreadsheet_warmup.py", line 704, in _warm_collaboration_flows
+  File "/tmp/tmp.L2TH2Y5coc/artifact_tool_v2-2.8.22/artifact_tool/generated/interface/models.py", line 32317, in hydrate_crdt_from_proto
+  File "/tmp/tmp.L2TH2Y5coc/artifact_tool_v2-2.8.22/artifact_tool/rpc/remote.py", line 749, in __call__
+  File "/tmp/tmp.L2TH2Y5coc/artifact_tool_v2-2.8.22/artifact_tool/rpc/client.py", line 150, in call
+artifact_tool.rpc.client.RemoteError: hydrateCrdtFromProto requires an empty collaborative document.
