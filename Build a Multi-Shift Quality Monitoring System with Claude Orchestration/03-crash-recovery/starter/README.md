@@ -1,19 +1,9 @@
-# Exercise 3 — Crash Recovery with an Incremental Manifest (starter)
+# Exercise 3 — Crash Recovery with an Incremental Manifest (solution)
 
-Your shift pipeline works end-to-end. Now you make it crash-resilient. A long shift can die mid-analysis (SIGKILL, OOM, host reboot) — without a durable manifest, you lose every finding from that shift. With one, the next invocation can decide whether to resume the partial run or start fresh with what was captured so far.
+Reference implementation for Exercise 3. After this stage:
 
-## What's here (additions to Exercise 2's solution)
-
-- `shift_monitor/manifest.py` — `Step` / `ManifestState` / `Manifest.append_step` / `Manifest.load`. Fill in the `TODO:` blocks.
-- `shift_monitor/recovery.py` — `STALE_RESUME_THRESHOLD_MINUTES` + `decide(state, now)`. Fill in the `TODO:` blocks.
-- `tests/test_us03_crash_recovery.py` — the 14 new tests for this exercise.
-
-## Install
-
-```bash
-python3 -m venv .venv
-.venv/bin/pip install -e ".[dev]"
-```
+- `shift_monitor/manifest.py` defines `Step` + `ManifestState`, an `append_step` that opens the file in binary append mode and `fsync`s before returning, and a `load` that reads partial lines without crashing and reports `complete` correctly (last step's `name == "complete"`).
+- `shift_monitor/recovery.py` exposes `STALE_RESUME_THRESHOLD_MINUTES = 30` with the shift-cycle rationale, and `decide(state, now)` implements the three-branch rule: empty → fresh, complete → fresh, incomplete-and-recent → resume (with `<=` at the boundary so the 30-minute mark goes to resume).
 
 ## Verify
 
@@ -21,6 +11,4 @@ python3 -m venv .venv
 .venv/bin/pytest tests/test_us01_tiered_state.py tests/test_us02_invocation_pipeline.py tests/test_us03_crash_recovery.py -v
 ```
 
-Goal: 29 passed.
-
-Two foot-guns are called out in the TODO comments: text mode silently weakening fsync on `append_step`, and the off-by-one second at the 30-minute boundary in `decide`. Read those before you fill in the bodies.
+Expected: 29 passed.
