@@ -1,21 +1,19 @@
-# Starter — Exercise 2
+# Solution — Exercise 2
 
-This starter is byte-identical to Exercise 1's solution, with one addition: a starter `.claude/commands/review.md` containing `<!-- TODO: -->` blocks for the parts you author.
+This directory contains the project state after Exercise 2.
 
-## Files you will edit
+Compared to the starter, `.claude/commands/review.md` is now complete:
 
-- `.claude/commands/review.md` — five TODO blocks:
-  1. Frontmatter (`description`, `argument-hint`, read-only `allowed-tools` with granular `Bash(git diff:*)`-style entries).
-  2. Phase 1 — Interview pattern subsection with concrete trigger conditions.
-  3. Phase 2 — Must-report vs Skip taxonomy.
-  4. Phase 3 — Interacting-vs-independent bundling paragraph.
-  5. Two worked I/O examples in the `## Examples` section (one independent, one interacting).
+- Frontmatter declares `description`, `argument-hint`, and an `allowed-tools` list of granular read-only entries (`Read`, `Grep`, `Glob`, `Bash(git diff:*)`, `Bash(git log:*)`, `Bash(git show:*)`, `Bash(git status:*)`, `Bash(gh pr diff:*)`, `Bash(gh pr view:*)`, `Bash(gh pr checks:*)`).
+- Phase 1 names four interview triggers (dependency changes, public-API/DB-column changes, refactors without test changes, multi-surface diffs).
+- Phase 2 lists the must-report taxonomy (bugs, security, convention violations the rules catch, breaking changes, migration safety) and the skip list (formatting, naming bikeshed, untracked-style preferences, TODO-with-ticket).
+- Phase 3 gives the interacting-vs-independent heuristic with a one-line test.
+- Two worked examples: one with two independent convention findings on `src/api/orders/get.ts`, one with three interacting bugs on `src/api/orders/refund.ts`.
 
-## Run / verify
+## Verify
 
 ```bash
-source .venv/bin/activate    # reuses the venv from Exercise 1
 pytest -q tests/test_us01_claude_md_hierarchy.py tests/test_us02_path_scoped_rules.py tests/test_us03_review_command.py
 ```
 
-Replace each TODO until pytest reports `21 passed`.
+Expected: **21 passed**.
