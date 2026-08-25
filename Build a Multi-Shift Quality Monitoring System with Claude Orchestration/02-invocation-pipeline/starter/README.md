@@ -1,22 +1,11 @@
-# Exercise 2 — Push-Work-Down Invocation Pipeline (starter)
+# Exercise 2 — Push-Work-Down Invocation Pipeline (solution)
 
-You have a working data layer from Exercise 1. Now you wire up the orchestration loop: SQL-filter the new defects, build a prompt shape that fits the situation, call Claude exactly once, and write the updated hot state atomically.
+Reference implementation for Exercise 2. After this stage:
 
-## What's here (additions to Exercise 1's solution)
-
-- `shift_monitor/invocation.py` — `thin` / `rich` / `resumed` builders. Fill in the `TODO:` blocks.
-- `shift_monitor/pipeline.py` — `gather_new_defects`, `build_rich_prompt`, `run_shift`. Fill in the `TODO:` blocks.
-- `shift_monitor/client.py` — `ClaudeClient` Protocol + `RecordedClaudeClient` + `AnthropicClaudeClient`. Provided as scaffolding.
-- `shift_monitor/scratchpad.py` — typed append-only finding store. Provided as scaffolding; you'll use it again in Exercise 4 to isolate per-fork findings.
-- `shift_monitor/__main__.py` — argparse CLI plumbing. Provided as scaffolding.
-- `tests/test_us02_invocation_pipeline.py` — the 6 new tests for this exercise.
-
-## Install
-
-```bash
-python3 -m venv .venv
-.venv/bin/pip install -e ".[dev]"
-```
+- `shift_monitor/invocation.py` exposes `thin` / `rich` / `resumed` as three structurally distinct prompt builders, each returning an `Invocation(shape, prompt)` value object.
+- `shift_monitor/pipeline.gather_new_defects` is a pure pass-through to `WarmStore.defects_since` — no Python-side filtering.
+- `shift_monitor/pipeline.build_rich_prompt` keeps the rendered prompt under the 4_000-character ceiling for the fixture batch.
+- `shift_monitor/pipeline.run_shift` runs the full loop: read hot state → SQL-filter new defects → build rich prompt → one `client.complete` call → parse JSON-fenced state update → atomic hot-state write → one `ScratchpadEntry` appended.
 
 ## Verify
 
@@ -24,9 +13,9 @@ python3 -m venv .venv
 .venv/bin/pytest tests/test_us01_tiered_state.py tests/test_us02_invocation_pipeline.py -v
 ```
 
-Goal: 15 passed.
+Expected: 15 passed.
 
-End-to-end smoke (once the tests pass):
+End-to-end smoke (recorded client, offline):
 
 ```bash
 .venv/bin/python -c "
@@ -42,5 +31,3 @@ w.insert_many(json.load(open('fixtures/defects.json')))
   --since 2026-04-29T22:00:00Z \
   --recorded-response fixtures/recorded_responses/shift_C_2026-04-30.json
 ```
-
-You should see one Claude call's worth of output: a printed summary line, `data/hot_state.json` rewritten atomically, and one entry appended to `data/shift_scratchpad.jsonl`.
